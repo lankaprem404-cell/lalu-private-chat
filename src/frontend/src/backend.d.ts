@@ -1,0 +1,19 @@
+import type { Principal } from "@icp-sdk/core/principal";
+export interface Some<T> {
+    __kind__: "Some";
+    value: T;
+}
+export interface None {
+    __kind__: "None";
+}
+export type Option<T> = Some<T> | None;
+export interface ChatMessage {
+    id: bigint;
+    text: string;
+    sender: string;
+    timestamp: bigint;
+}
+export interface backendInterface {
+    getMessages(): Promise<Array<ChatMessage>>;
+    sendMessage(sender: string, text: string, timestamp: bigint): Promise<void>;
+}

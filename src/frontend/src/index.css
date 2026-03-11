@@ -1,0 +1,165 @@
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-VariableFont_wght.woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Pink Romantic Palette */
+    --background: 97 0.02 0; /* #fff5f9 warm white */
+    --foreground: 20 0.05 15; /* deep rose-brown */
+
+    --card: 100 0 0; /* pure white */
+    --card-foreground: 20 0.05 15;
+
+    --popover: 100 0 0;
+    --popover-foreground: 20 0.05 15;
+
+    --primary: 65 0.22 0; /* #ff66b2 hot pink */
+    --primary-foreground: 100 0 0;
+
+    --secondary: 92 0.06 350; /* soft blush */
+    --secondary-foreground: 30 0.12 5;
+
+    --muted: 95 0.03 350;
+    --muted-foreground: 55 0.08 5;
+
+    --accent: 80 0.12 355; /* light pink accent */
+    --accent-foreground: 25 0.12 5;
+
+    --destructive: 55 0.22 25;
+    --destructive-foreground: 100 0 0;
+
+    --border: 90 0.05 350;
+    --input: 90 0.05 350;
+    --ring: 65 0.22 0;
+
+    --radius: 1rem;
+
+    /* Chart */
+    --chart-1: 65 0.22 0;
+    --chart-2: 75 0.15 350;
+    --chart-3: 85 0.1 340;
+    --chart-4: 55 0.18 10;
+    --chart-5: 45 0.24 20;
+
+    /* Sidebar */
+    --sidebar: 97 0.02 0;
+    --sidebar-foreground: 20 0.05 15;
+    --sidebar-primary: 65 0.22 0;
+    --sidebar-primary-foreground: 100 0 0;
+    --sidebar-accent: 92 0.06 350;
+    --sidebar-accent-foreground: 30 0.12 5;
+    --sidebar-border: 90 0.05 350;
+    --sidebar-ring: 65 0.22 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Figtree", sans-serif;
+  }
+}
+
+/* Animated background */
+.lalu-bg {
+  background: linear-gradient(
+    135deg,
+    oklch(97% 0.02 340) 0%,
+    oklch(95% 0.04 355) 30%,
+    oklch(93% 0.06 345) 60%,
+    oklch(96% 0.03 330) 100%
+  );
+  min-height: 100vh;
+}
+
+/* Floating hearts */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+.heart-float {
+  position: fixed;
+  pointer-events: none;
+  font-size: 1.2rem;
+  animation: float-up linear infinite;
+  z-index: 0;
+}
+
+/* Message bubble */
+.msg-bubble {
+  max-width: 70%;
+  padding: 0.6rem 1rem;
+  border-radius: 1.25rem;
+  position: relative;
+  word-break: break-word;
+}
+
+.msg-bubble-mine {
+  background: oklch(65% 0.22 0 / 0.12);
+  border-bottom-right-radius: 0.25rem;
+  margin-left: auto;
+}
+
+.msg-bubble-other {
+  background: white;
+  border-bottom-left-radius: 0.25rem;
+  border: 1px solid oklch(90% 0.05 350);
+  margin-right: auto;
+}
+
+/* Glow on input focus */
+.pink-glow:focus {
+  box-shadow: 0 0 0 3px oklch(65% 0.22 0 / 0.25);
+}
+
+/* Pulse animation for send button */
+@keyframes pulse-pink {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 oklch(65% 0.22 0 / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px oklch(65% 0.22 0 / 0);
+  }
+}
+
+.btn-pulse:hover {
+  animation: pulse-pink 1.2s ease-in-out infinite;
+}
